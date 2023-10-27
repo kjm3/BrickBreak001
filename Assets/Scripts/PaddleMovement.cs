@@ -7,6 +7,7 @@ public class PaddleMovement : MonoBehaviour
     public float speed = 8.0f; // Movement speed of the paddle
     public float minX = -8.0f; // Minimum x position
     public float maxX = 8.0f; // Maximum x position
+    private bool canMove = true; // Paddleが動けるかどうかを判断するフラグ
 
     void Update()
     {
@@ -32,8 +33,16 @@ public class PaddleMovement : MonoBehaviour
         // 接触したオブジェクトのタグが"Wall"の場合
         if (collision.gameObject.tag == "Wall")
         {
-            // ここでPaddleの動きを止める処理を実装する
+            canMove = false; // Paddleの動きを止める
         }
     }
 
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        // 接触が解除されたオブジェクトのタグが"Wall"の場合
+        if (collision.gameObject.tag == "Wall")
+        {
+            canMove = true; // Paddleの動きを再開
+        }
+    }
 }
