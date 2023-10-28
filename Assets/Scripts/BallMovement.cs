@@ -9,7 +9,11 @@ public class BallMovement : MonoBehaviour
     private bool isLaunched = false;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private AudioSource audioSource;
+    public AudioClip wallSound;
+    public AudioClip brock001Sound;
+    public AudioClip brock002Sound;
+
+
 
 
     private void Start()
@@ -19,9 +23,7 @@ public class BallMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
 
-        audioSource = GetComponent<AudioSource>();
 
-       
     }
 
     void Update()
@@ -53,21 +55,19 @@ public class BallMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // 衝突したオブジェクトがPaddleでない場合
         if (collision.gameObject.tag == "Wall")
         {
-            audioSource.Play(); // 衝突音を再生
+            AudioSource.PlayClipAtPoint(wallSound, transform.position);
         }
-
-        if (collision.gameObject.tag == "Brock001")
+        else if (collision.gameObject.tag == "Brock001")
         {
             ScoreManager.Instance.AddScore(10);
+            AudioSource.PlayClipAtPoint(brock001Sound, transform.position);
         }
         else if (collision.gameObject.tag == "Brock002")
         {
             ScoreManager.Instance.AddScore(50);
+            AudioSource.PlayClipAtPoint(brock002Sound, transform.position);
         }
     }
-
-
 }

@@ -3,7 +3,11 @@ guid: 2c2f70b9156e0f4428ad4f0c53ed5107
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - paddle: {instanceID: 0}
+  - wallSound: {fileID: 8300000, guid: f772762336cbfd1408a538876d5b0278, type: 3}
+  - brock001Sound: {fileID: 8300000, guid: e80fe1f69f2f8df4aa406d368bc9a25f, type: 3}
+  - brock002Sound: {fileID: 8300000, guid: a8ceae25c0dc8a848a10c424da8f762e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
