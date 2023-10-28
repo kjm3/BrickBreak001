@@ -9,6 +9,8 @@ public class BallMovement : MonoBehaviour
     private bool isLaunched = false;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
+
 
     private void Start()
     {
@@ -16,6 +18,10 @@ public class BallMovement : MonoBehaviour
         spriteRenderer.enabled = false; // ボールを非表示にする
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+
+        audioSource = GetComponent<AudioSource>();
+
+       
     }
 
     void Update()
@@ -44,4 +50,15 @@ public class BallMovement : MonoBehaviour
         rb.velocity = direction * launchSpeed;
         isLaunched = true;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 衝突したオブジェクトがPaddleでない場合
+        if (collision.gameObject.tag != "Player")
+        {
+            audioSource.Play(); // 衝突音を再生
+        }
+    }
+
+
 }

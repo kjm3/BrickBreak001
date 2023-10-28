@@ -82,3 +82,4 @@ crashlytics-build.properties
 # Ignore specific folders in Assets
 Assets/images/
 Assets/Sprites/
+Assets/Music/
