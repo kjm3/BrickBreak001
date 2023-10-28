@@ -5,8 +5,16 @@ using UnityEngine;
 public class PaddleMovement : MonoBehaviour
 {
     public float speed = 8.0f; // Movement speed of the paddle
-    public float minX = -8.0f; // Minimum x position
-    public float maxX = 8.0f; // Maximum x position
+    private float halfWidth; // ”¼•ª‚Ì•‚ğ•Û‘¶‚·‚é•Ï”
+    public float minX = -2.0f; // Minimum x position
+    public float maxX = 2.0f; // Maximum x position
+
+    void Start()
+    {
+        halfWidth = transform.localScale.x / 2; // Paddle‚Ì”¼•ª‚Ì•‚ğŒvZ
+        minX += halfWidth; // minX‚É”¼•ª‚Ì•‚ğ’Ç‰Á
+        maxX -= halfWidth; // maxX‚©‚ç”¼•ª‚Ì•‚ğŒ¸Z
+    }
 
     void Update()
     {
@@ -26,7 +34,4 @@ public class PaddleMovement : MonoBehaviour
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX); // Clamp position to screen bounds
         transform.position = newPosition; // Set new position
     }
-
-  
-    
 }
