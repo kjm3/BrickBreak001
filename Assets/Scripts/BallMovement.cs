@@ -54,9 +54,18 @@ public class BallMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // 衝突したオブジェクトがPaddleでない場合
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag == "Wall")
         {
             audioSource.Play(); // 衝突音を再生
+        }
+
+        if (collision.gameObject.tag == "Brock001")
+        {
+            ScoreManager.Instance.AddScore(10);
+        }
+        else if (collision.gameObject.tag == "Brock002")
+        {
+            ScoreManager.Instance.AddScore(50);
         }
     }
 
